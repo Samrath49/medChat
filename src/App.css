@@ -1397,3 +1397,53 @@ ul.str-chat__simple-reactions-list:hover {
   height: 40px;
   background: rgba(0, 0, 0, 0.05);
 }
+
+.team-message-input__button {
+  position: relative;
+  width: 0;
+  right: 32px;
+  cursor: pointer;
+}
+
+.team-message-input__input:focus-within .team-message-input__button path {
+  fill: var(--primary-color);
+  fill-opacity: 1;
+}
+
+.team-message-input__wrapper .str-chat__textarea textarea {
+  display: flex;
+  background: #fff;
+  border: none;
+  outline: none;
+  font-family: Helvetica Neue, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.team-message-input__wrapper .str-chat__textarea textarea:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: #fff;
+}
+
+.team-message-input__wrapper .str-chat__textarea textarea::placeholder {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.team-message-input__icons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.team-message-input__icons div:first-child {
+  margin: 0 5px;
+}
+
+.team-message-input__icons div:nth-child(3) {
+  margin-left: 5px;
+}
