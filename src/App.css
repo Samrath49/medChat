@@ -1122,3 +1122,38 @@ body {
   font-size: 14px;
   color: var(--primary-color);
 }
+
+.str-chat__message-replies-count-button:focus {
+  outline: none;
+}
+
+.str-chat__message-team-actions {
+  right: -3px;
+}
+
+.str-chat__date-separator-date {
+  color: #858688;
+  font-family: Helvetica Neue, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.str-chat__avatar-image img.str-chat__avatar-image--loaded {
+  display: none;
+}
+
+.str-chat__message-attachment {
+  margin-bottom: 0;
+}
+
+.str-chat__message-attachment--image {
+  max-width: 375px;
+}
+
+.str-chat__message-attachment-card--title {
+  color: var(--primary-color);
+}
+
+.str-chat__message-team .str-chat__message-attachment-card {
+  border-radius: 16px;
+}
