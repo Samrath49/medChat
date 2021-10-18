@@ -94,3 +94,39 @@ body {
   font-weight: unset;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.auth__form-container_fields-content_input input:hover {
+  border-color: #dcdddd;
+}
+
+.auth__form-container_fields-content_input input:focus,
+.auth__form-container_fields-content_input input:active {
+  box-shadow: 0px 0px 0px 1.5px #005fff;
+  border-color: #005fff;
+}
+
+.auth__form-container_fields-content_input-password {
+  position: absolute;
+  right: 13%;
+  top: 50%;
+  cursor: pointer;
+}
+
+.auth__form-container_fields-content_button {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.auth__form-container_fields-content_button button {
+  border-radius: 4px;
+  background: #005fff;
+  border: 1px solid #005fff;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  padding: 0.7rem 1.2rem;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
