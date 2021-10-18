@@ -1017,3 +1017,63 @@ body {
 .channel-preview__item.multi {
   max-width: 220px;
 }
+
+.channel-preview__item.single .str-chat__avatar {
+  margin-right: 12px;
+}
+
+.channel-preview__item.multi .str-chat__avatar {
+  margin-right: 0;
+}
+
+.channel-preview__item.multi span:first-child {
+  position: relative;
+  z-index: 2;
+  bottom: 6px;
+}
+
+.channel-preview__item.multi div:nth-child(2) {
+  position: relative;
+  right: 10px;
+  z-index: 1;
+  margin-bottom: 0px;
+}
+
+.channel-preview__item.multi p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.str-chat__message-team:hover {
+  background: #e9e9ea;
+}
+
+.str-chat__message-team-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.str-chat__message-team-content p {
+  font-family: Helvetica Neue, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 120%;
+  color: #000000;
+  margin: 0;
+  background: none;
+}
+
+.str-chat__message-team:hover .str-chat__message-team-content {
+  background: none;
+}
+
+.str-chat__message-team-meta {
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.str-chat__message-team--bottom time {
+  display: none;
+}
