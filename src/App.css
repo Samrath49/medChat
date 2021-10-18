@@ -1652,3 +1652,38 @@ div.rta__autocomplete.str-chat__emojisearch {
   height: 44px;
   width: 41px;
 }
+
+.thread-message-input__input:focus-within .thread-message-input__button path {
+  fill: var(--primary-color);
+  fill-opacity: 1;
+}
+
+.thread-message-input__wrapper .str-chat__textarea textarea {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: none;
+  outline: none;
+  font-family: Helvetica Neue, sans-serif;
+  font-size: 15px;
+  line-height: 10px;
+}
+
+.thread-message-input__wrapper .str-chat__textarea textarea:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: #fff;
+}
+
+.thread-message-input__wrapper .str-chat__textarea textarea::placeholder {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.thread-message-input__icons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 30px;
+  padding-right: 6px;
+}
