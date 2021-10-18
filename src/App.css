@@ -1739,3 +1739,70 @@ div.rta__autocomplete.str-chat__emojisearch {
   width: 100%;
   padding: 10px;
 }
+
+@media screen and (max-width: 960px) {
+  .channel-list__container {
+    display: none;
+  }
+
+  .team-channerl-header_menu-icon {
+    display: flex;
+  }
+
+  .team-channel-header__container {
+    height: 70px;
+  }
+
+  .team-channel-header__name-wrapper {
+    height: 100%;
+    max-width: unset;
+  }
+
+  .team-channel-header__name-multi {
+    margin-right: 8px;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .team-channel-header__name.user {
+    font-size: 10px;
+    margin: 5px;
+    text-align: center;
+  }
+
+  .team-channel-header__right {
+    display: flex;
+    padding-left: 10px;
+  }
+
+  .channel-list__container-responsive {
+    display: flex;
+  }
+
+  .channel-list__list__wrapper {
+    width: 100%;
+  }
+
+  .channerl-list__container-toggle {
+    display: flex;
+  }
+
+  .channel-search__input__wrapper {
+    width: 90%;
+    padding-left: 10px;
+    justify-content: flex-start;
+  }
+
+  .channel-search__input__text {
+    width: inherit;
+  }
+
+  .channel-preview__item.multi {
+    width: 80%;
+  }
+
+  .channel-search__results {
+    top: 100%;
+    left: 5%;
+  }
+}
