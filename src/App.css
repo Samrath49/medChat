@@ -1287,3 +1287,43 @@ ul.str-chat__simple-reactions-list:hover {
 .str-chat__message-team-content p a {
   color: var(--primary-color);
 }
+
+.pinned-message {
+  background: #e6efff;
+}
+
+.unpinned-message {
+  background: #fff;
+}
+
+.str-chat__message-team-pin-indicator {
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+  height: 18px;
+}
+
+.str-chat__message-team-pin-indicator div svg {
+  fill: #858688;
+  font-size: 10px !important;
+}
+
+.str-chat__message-team-pin-indicator div div {
+  font-family: Helvetica Neue, sans-serif;
+  font-size: 10px !important;
+  line-height: 120%;
+  color: #858688;
+  margin-left: 4px;
+}
+
+.str-chat__reaction-selector {
+  background: #ffffff;
+  border: 1px solid #e9e9ea;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 99999px;
+}
+
+.str-chat__reaction-selector li {
+  font-size: 24px;
+}
