@@ -1537,3 +1537,53 @@ div.rta__autocomplete.str-chat__emojisearch {
   height: 62px !important;
   align-items: center;
 }
+
+.str-chat__thread-header-details strong {
+  font-family: Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  color: #2c2c30;
+  margin-right: 10px;
+}
+
+.str-chat__thread-header-details small {
+  font-family: Helvetica Neue, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #858688;
+}
+
+.str-chat__thread .str-chat__square-button {
+  border-radius: 20px;
+  height: 35px;
+  width: 35px;
+}
+
+.str-chat__square-button svg {
+  fill: var(--primary-color);
+}
+
+.str-chat__square-button:hover {
+  border: 1px solid var(--primary-color);
+  cursor: pointer;
+}
+
+.str-chat__square-button:focus {
+  outline: none;
+}
+
+.str-chat__thread-start {
+  padding: 0;
+  margin: 20px 0 0 0;
+  font-size: 0;
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.str-chat .str-chat__list--thread {
+  padding: 0px;
+}
