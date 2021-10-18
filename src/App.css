@@ -1687,3 +1687,55 @@ div.rta__autocomplete.str-chat__emojisearch {
   width: 30px;
   padding-right: 6px;
 }
+
+.thread-message-input__icons svg:hover path {
+  fill: var(--primary-color);
+  fill-opacity: 1;
+}
+
+.thread-message-input__icons svg:hover {
+  cursor: pointer;
+}
+
+.thread-message-input__wrapper .str-chat__input--emojipicker {
+  z-index: 3;
+  top: 183px;
+  right: 299px;
+  width: 338px;
+}
+
+.emoji-mart .emoji-mart-emoji:focus {
+  outline: none;
+}
+
+.team-channerl-header_menu-icon {
+  display: none;
+}
+
+.channerl-list__container-toggle {
+  display: none;
+  height: 50px;
+  width: 50px;
+  background: #005fff;
+  position: absolute;
+  right: -2%;
+  top: 50%;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.channel-list__container-responsive {
+  display: none;
+  height: 100%;
+  box-shadow: inset 1px 0px 0px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  width: 90%;
+  top: 0%;
+  z-index: 5;
+  transition: 0.8s ease;
+}
+
+.str-chat__input-flat {
+  width: 100%;
+  padding: 10px;
+}
