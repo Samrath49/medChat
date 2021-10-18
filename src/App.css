@@ -1077,3 +1077,18 @@ body {
 .str-chat__message-team--bottom time {
   display: none;
 }
+
+.str-chat__message-team--middle time {
+  display: none;
+}
+
+.str-chat__message-team-meta time {
+  visibility: visible;
+  z-index: 2;
+  font-family: Helvetica Neue, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  color: #858688;
+  margin-top: 4px;
+}
