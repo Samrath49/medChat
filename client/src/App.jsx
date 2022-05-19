@@ -1,45 +1,43 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { StreamChat } from "stream-chat";
+import { Chat } from "stream-chat-react";
+import Cookies from "universal-cookie";
+import { ChannelListContainer, ChannelContainer, Auth } from "./components";
+import "./App.css";
+import "stream-chat-react/dist/css/index.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const cookies = new Cookies();
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
+const apiKey = import.meta.env.VITE_API_KEY;
+
+const client = StreamChat.getInstance(apiKey);
+
+const authToken = cookies.get("token");
+
+if (authToken) {
+  client.connectUser(
+    {
+      id: cookies.get("userId"),
+      name: cookies.get("username"),
+      fullName: cookies.get("fullName"),
+      img: cookies.get("avatarURL"),
+      hashedPassword: cookies.get("hashedPassword"),
+      phoneNumber: cookies.get("phoneNumber"),
+    },
+    authToken
+  );
 }
 
-export default App
+function App() {
+  if (!authToken) return <Auth />;
+
+  return (
+    <div className="app__wrapper">
+      <Chat client={client} theme="team light">
+        <ChannelListContainer />
+        <ChannelContainer />
+      </Chat>
+    </div>
+  );
+}
+
+export default App;
