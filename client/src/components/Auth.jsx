@@ -29,7 +29,7 @@ const Auth = () => {
 
     const { username, password, phoneNumber, avatarURL } = form;
 
-    const URL = "http://localhost:5000/auth";
+    const URL = import.meta.env.VITE_API_KEY || "http://localhost:5000/auth";
 
     const {
       data: { token, userId, fullName, hashedPassword },
