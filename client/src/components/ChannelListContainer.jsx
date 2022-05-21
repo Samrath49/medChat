@@ -24,7 +24,7 @@ const SideBar = ({ logout }) => (
 
 const CompanyHeader = () => (
   <div className="channel-list__header">
-    <p className="channel-list__header__text">Medical Pager</p>
+    <p className="channel-list__header__text">WeebCord</p>
   </div>
 );
 

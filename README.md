@@ -1,4 +1,4 @@
-# A Chatting application for medical professionals 
+# A Chatting application for anime lovers 
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
