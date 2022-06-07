@@ -2,8 +2,6 @@ import { useState } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
 
-import signinImage from "../assets/signup.jpg";
-
 const cookies = new Cookies();
 
 const initialState = {
@@ -60,98 +58,120 @@ const Auth = () => {
   };
 
   return (
-    <div className="auth__form-container">
-      <div className="auth__form-container_fields">
-        <div className="auth__form-container_fields-content">
-          <p className="">{isSignup ? "Sign Up" : "Sign In"}</p>
-          <form action="" onSubmit={handleSubmit}>
-            {isSignup && (
-              <div className="auth__form-container_fields-content_input">
-                <label htmlFor="fullName">Your Name</label>
-                <input
-                  type="text"
-                  name="fullName"
-                  placeholder="Full Name"
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            )}
-            <div className="auth__form-container_fields-content_input">
-              <label htmlFor="username">Username</label>
-              <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                onChange={handleChange}
-                required
-              />
-            </div>
-            {isSignup && (
-              <div className="auth__form-container_fields-content_input">
-                <label htmlFor="phoneNumber">Phone Number</label>
-                <input
-                  type="text"
-                  name="phoneNumber"
-                  placeholder="Phone Number"
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            )}
-            {isSignup && (
-              <div className="auth__form-container_fields-content_input">
-                <label htmlFor="avatarURL">Avatar URL</label>
-                <input
-                  type="url"
-                  name="avatarURL"
-                  placeholder="Avatar url"
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            )}
-            <div className="auth__form-container_fields-content_input">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Your Password"
-                onChange={handleChange}
-                required
-              />
-            </div>
-            {isSignup && (
-              <div className="auth__form-container_fields-content_input">
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Confirm Password"
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            )}
-            <div className="auth__form-container_fields-content_button">
-              <button>{isSignup ? "Sing Up" : "Sign In"}</button>
-            </div>
-          </form>
+    <>
+      <div className="bg-black h-screen w-screen flex justify-center">
+        <p className="font-bold relative text-[14rem] text-transparent bg-clip-text bg-gradient-to-b from-slate-200/70  to-black items-start select-none">
+          {isSignup ? "Sign Up" : "Sign In"}
+        </p>
+        <div className="absolute overflow-hidden mt-52 text-slate-100">
+          {/* <div className="h-40-r w-40-r bg-gradient-to-tr from-blue-700 to-green-500 rounded-full absolute left-2/4 -top-56 transform rotate-160"></div> */}
+          {/* <div className="h-40-r w-40-r bg-gradient-to-tr from-purple-700 via-pink-500 to-red-500 rounded-full absolute top-2/3 right-2/4 transform rotate-180"></div> */}
+          <div className="px-16 md:px-48 py-14 h-auto bg-white bg-opacity-10 rounded-t-xl rounded-b-xl shadow-5xl z-2 backdrop-filter backdrop-blur-xl">
+            <div className="text-center gap-10">
+              <form
+                action=""
+                onSubmit={handleSubmit}
+                className="h-full flex flex-col justify-evenly items-center gap-3"
+              >
+                {isSignup && (
+                  <input
+                    type="text"
+                    name="fullName"
+                    htmlFor="fullName"
+                    // autocomplete="off"
+                    className="w-full md:w-96 rounded-xl p-3 mt-2 outline-none bg-transparent text-slate-200 border-2 border-gray-600 text-md font-semibold hover:border-gray-400 active:border-gray-400"
+                    placeholder="Full Name"
+                    onChange={handleChange}
+                    required
+                  />
+                )}
+                <div className="">
+                  <input
+                    type="text"
+                    name="username"
+                    htmlFor="username"
+                    className="w-full md:w-96 rounded-xl p-3 mt-2 outline-none  bg-transparent text-slate-200 border-2 border-gray-600 text-md font-semibold hover:border-gray-400 active:border-gray-400"
+                    placeholder="Username"
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                {isSignup && (
+                  <div className="">
+                    <input
+                      type="text"
+                      name="phoneNumber"
+                      htmlFor="phoneNumber"
+                      className="w-full md:w-96 rounded-xl p-3 mt-2 outline-none  bg-transparent text-slate-200 border-2 border-gray-600 text-md font-semibold hover:border-gray-400 active:border-gray-400"
+                      placeholder="Phone Number"
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                )}
+                {isSignup && (
+                  <div className="">
+                    <input
+                      type="url"
+                      name="avatarURL"
+                      htmlFor="avatarURL"
+                      className="w-full md:w-96 rounded-xl p-3 mt-2 outline-none  bg-transparent text-slate-200 border-2 border-gray-600 text-md font-semibold hover:border-gray-400 active:border-gray-400"
+                      placeholder="Avatar url"
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                )}
+                <div className="">
+                  <input
+                    type="password"
+                    name="password"
+                    htmlFor="password"
+                    className="w-full md:w-96 rounded-xl p-3 mt-2 outline-none  bg-transparent text-slate-200 border-2 border-gray-600 text-md font-semibold hover:border-gray-400 active:border-gray-400"
+                    placeholder="Your Password"
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                {isSignup && (
+                  <div className="">
+                    <input
+                      type="password"
+                      name="confirmPassword"
+                      htmlFor="confirmPassword"
+                      className="w-full md:w-96 rounded-xl p-3 mt-2 outline-none  bg-transparent text-slate-200 border-2 border-gray-600 text-md font-semibold hover:border-gray-400 active:border-gray-400"
+                      placeholder="Confirm Password"
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                )}
+                <div className="mt-5 mb-5">
+                  <button className="rounded-xl p-3 w-40 border-2 border-slate-700/90 bg-gradient-to-br from-slate-600/60 to-black cursor-pointer hover:border-slate-500">
+                    {isSignup ? "Sign Up" : "Sign In"}
+                  </button>
+                </div>
+              </form>
 
-          <div className="auth__form-container_fields-account">
-            <p>
-              {isSignup ? "Already have an account" : "Don't have an account"}
-              <span onClick={switchMode}>
-                {isSignup ? "Sign In" : "Sign Up"}
-              </span>
-            </p>
+              <div className="text-lg text-slate-500 select-none">
+                <p>
+                  {isSignup
+                    ? "Already have an account"
+                    : "Don't have an account"}
+                  <span
+                    onClick={switchMode}
+                    className="text-slate-400 hover:text-slate-300 cursor-pointer"
+                  >
+                    {" "}
+                    {isSignup ? "Sign In" : "Sign Up"}
+                  </span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div className="auth__form-container_image">
-        <img src={signinImage} alt="Sign In" />
-      </div>
-    </div>
+    </>
   );
 };
 
