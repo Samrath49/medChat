@@ -2,19 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  /* overflow: hidden; */
-}
-
-@layer base {
-  * {
-    @apply sm:overflow-auto md:overflow-hidden;
-  }
-  .input-text {
-    @apply font-poppins bg-transparent border border-t-0 border-l-0 border-r-0 focus:outline-none text-white tracking-wide;
+/* Moz */
+@-moz-document url-prefix() {
+  .auth {
+    border-radius: 5px;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 1),
+      rgba(22, 21, 21, 1)
+    );
+    /* background-color: #2d3436; */
+    /* background-image: linear-gradient(
+      360deg,
+      rgba(45, 52, 54, -50) 0%,
+      rgba(0, 0, 0, 1) 74%
+    ); */
   }
 }
