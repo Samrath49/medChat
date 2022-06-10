@@ -7,13 +7,11 @@ const Navigation = () => {
       <div className="w-full px-4 mx-auto sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-1 md:flex md:items-center md:gap-12">
-            <Link
-              to="/"
-              aria-label="weebCord"
-              title="App"
-              className="block text-teal-300"
-            >
+            <Link to="/" aria-label="weebCord" title="App" className="flex">
               <img className="w-11" src={Icon} alt="" />
+              <span className="flex pt-1 text-2xl font-bold tracking-wider text-primary">
+                weebCord
+              </span>
               {/* <svg
                 className="h-8"
                 viewBox="0 0 28 24"
