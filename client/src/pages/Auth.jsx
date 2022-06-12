@@ -6,16 +6,24 @@ import {
   AiFillPlusCircle,
 } from "react-icons/ai";
 import botImg from "../assets/img/bot.jpeg";
+import { useSignupUserMutation } from "../Api/appApi";
 
 const signUpState = {
   username: "",
-  password: "",
   email: "",
+  password: "",
   confirmPassword: "",
+  picture: null,
+};
+
+const signInState = {
+  username: "",
+  password: "",
 };
 
 const Auth = () => {
-  const [signUpForm, setSignUpForm] = useState(signUpState);
+  const [signInValues, setSignInValues] = useState(signInState);
+  const [signUpValues, setSignUpValues] = useState(signUpState);
   const [isSignup, setIsSignup] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -24,8 +32,9 @@ const Auth = () => {
   const [uploadingImg, setUploadingImg] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
 
+  const [signUpUser, { isLoading, error }] = useSignupUserMutation();
+
   let location = useLocation();
-  // console.log(location.pathname);
 
   async function uploadImage() {
     const data = new FormData();
@@ -54,12 +63,22 @@ const Auth = () => {
     if (!img) return alert("Please upload your profile picture");
     const url = await uploadImage(img);
     console.log(url);
+    console.log(
+      signUpValues.username,
+      signUpValues.email,
+      signUpValues.password,
+      url
+    );
     // signup the user
-    // signupUser({ name, email, password, picture: url }).then(({ data }) => {
-    //   if (data) {
-    //     console.log(data);
-    //     navigate("/chat");
-    //   }
+    signUpUser({ ...signUpValues, picture: url }).then(({ data }) => {
+      if (data) {
+        console.log(data);
+      }
+    });
+    // if (data) {
+    // console.log(data);
+    // navigate("/chat");
+    // }
     // });
   };
 
@@ -77,6 +96,14 @@ const Auth = () => {
       setImagePreview(URL.createObjectURL(file));
     }
   }
+
+  const onChange = (e) => {
+    if (isSignup) {
+      setSignUpValues({ ...signUpValues, [e.target.name]: e.target.value });
+    } else {
+      setSignInValues({ ...signInValues, [e.target.name]: e.target.value });
+    }
+  };
 
   useEffect(() => {
     if (location.pathname == "/login") {
@@ -96,6 +123,7 @@ const Auth = () => {
           <div className="text-center gap-10">
             <form
               action=""
+              onChange={onChange}
               onSubmit={isSignup ? handleSignUpForm : handleSignIn}
               className="h-full flex flex-col justify-evenly items-center gap-3"
             >
@@ -115,6 +143,8 @@ const Auth = () => {
                   <input
                     type="file"
                     id="image-upload"
+                    name="picture"
+                    htmlFor="picture"
                     hidden
                     accept="image/png, image/jpeg"
                     onChange={validateImg}
@@ -128,7 +158,6 @@ const Auth = () => {
                   htmlFor="username"
                   className="w-full md:w-96 rounded-xl p-3 mt-2 outline-none  bg-transparent text-slate-200 border-2 border-gray-600 text-md font-semibold hover:border-gray-400 active:border-gray-400"
                   placeholder="Username"
-                  // onChange={handleChange}
                   required
                 />
               </div>
@@ -140,7 +169,6 @@ const Auth = () => {
                     htmlFor="email"
                     className="w-full md:w-96 rounded-xl p-3 mt-2 outline-none  bg-transparent text-slate-200 border-2 border-gray-600 text-md font-semibold hover:border-gray-400 active:border-gray-400"
                     placeholder="Your Email"
-                    // onChange={handleChange}
                     required
                   />
                 </div>
@@ -152,7 +180,7 @@ const Auth = () => {
                   htmlFor="password"
                   className="flex w-[19.5rem] outline-none  bg-transparent"
                   placeholder="Your Password"
-                  // onChange={handleChange}
+                  // pattern="^[A-Za-z0-9]{3,16}$"
                   required
                 />
                 {!showPassword ? (
@@ -173,11 +201,11 @@ const Auth = () => {
                 <div className="flex justify-between w-full md:w-96 rounded-xl p-3 mt-2 outline-none  bg-transparent text-slate-200 border-2 border-gray-600 text-md font-semibold hover:border-gray-400 active:border-gray-400">
                   <input
                     type={showConfirmPassword ? "text" : "password"}
-                    name="password"
-                    htmlFor="password"
+                    name="confirmPassword"
+                    htmlFor="confirmPassword"
                     className="flex w-[19.5rem] outline-none  bg-transparent"
                     placeholder="Confirm Password"
-                    // onChange={handleChange}
+                    // pattern="values.password"
                     required
                   />
                   {!showConfirmPassword ? (
@@ -205,7 +233,7 @@ const Auth = () => {
                   {isSignup && uploadingImg ? (
                     <svg
                       role="status"
-                      class="inline w-5 h-5 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-primary"
+                      className="inline w-5 h-5 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-primary"
                       viewBox="0 0 100 101"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
