@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import {
   AiFillEye,
   AiFillEyeInvisible,
@@ -34,6 +34,7 @@ const Auth = () => {
 
   const [signUpUser, { isLoading, error }] = useSignupUserMutation();
 
+  const navigate = useNavigate();
   let location = useLocation();
 
   async function uploadImage() {
@@ -73,18 +74,15 @@ const Auth = () => {
     signUpUser({ ...signUpValues, picture: url }).then(({ data }) => {
       if (data) {
         console.log(data);
+        navigate("/chat");
       }
     });
-    // if (data) {
-    // console.log(data);
-    // navigate("/chat");
-    // }
-    // });
   };
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    console.log(e);
+    console.log(signInValues);
+    navigate("/chat");
   };
 
   function validateImg(e) {

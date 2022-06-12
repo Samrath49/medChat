@@ -1,7 +1,18 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Icon from "../assets/icon.svg";
+import { useLogoutUserMutation } from "../Api/appApi";
 
 const Navigation = () => {
+  const user = useSelector((state) => state.user);
+  const [logoutUser] = useLogoutUserMutation();
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    await logoutUser(user);
+    window.location.replace("/");
+  };
+
   return (
     <header className="bg-gray-900">
       <div className="w-full px-4 mx-auto sm:px-6 lg:px-8">
@@ -44,7 +55,6 @@ const Navigation = () => {
                     Chat
                   </Link>
                 </li>
-
                 <li>
                   <Link
                     className="text-white transition hover:text-white/75"
@@ -57,23 +67,26 @@ const Navigation = () => {
             </nav>
 
             <div className="flex items-center gap-4">
-              <div className="sm:gap-4 sm:flex">
-                {/* <Link
-                  className="px-5 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primaryHover rounded-md shadow"
-                  to="/login"
-                >
-                  Login
-                </Link> */}
-
-                <div className="hidden sm:flex">
-                  <Link
-                    className="px-5 py-2.5 text-sm font-medium text-white bg-gray-800 border-2 border-slate-500 rounded-md hover:border-primary"
-                    to="/login"
-                  >
-                    Login
-                  </Link>
+              {user ? (
+                <div className="sm:gap-4 sm:flex">
+                  <div className="hidden sm:flex" onClick={handleLogout}>
+                    <button className="px-5 py-2.5 text-sm font-medium text-white bg-gray-800 border-2 border-slate-500 rounded-md hover:border-primary">
+                      Logout
+                    </button>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className="sm:gap-4 sm:flex">
+                  <div className="hidden sm:flex">
+                    <Link
+                      className="px-5 py-2.5 text-sm font-medium text-white bg-gray-800 border-2 border-slate-500 rounded-md hover:border-primary"
+                      to="/login"
+                    >
+                      Login
+                    </Link>
+                  </div>
+                </div>
+              )}
 
               <div className="block md:hidden">
                 <button className="p-2 text-white transition bg-gray-800 rounded hover:text-white/75">
