@@ -25,7 +25,7 @@ const persistedReducer = persistReducer(persistConfig, reducer);
 
 // creating the store
 const store = configureStore({
-  reducer: persistReducer,
+  reducer: persistedReducer,
   middleware: [thunk, appApi.middleware],
 });
 
