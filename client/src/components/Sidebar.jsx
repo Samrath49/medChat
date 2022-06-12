@@ -1,7 +1,10 @@
-import React from "react";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
   const rooms = ["first room", "second room", "third room", "fourth room"];
+  const user = useSelector((state) => state.user);
+
+  if (!user) return <></>;
   return (
     <>
       <div className="flex flex-col">
