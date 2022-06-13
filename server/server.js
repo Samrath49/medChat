@@ -49,9 +49,10 @@ io.on("connection", (socket) => {
     io.emit("new-user", members);
   });
 
-  socket.on("join-room", async (room) => {
-    socket.join(room);
-    let roomMessages = await getLastMessagesFromRoom(room);
+  socket.on("join-room", async (newRoom, perviousRoom) => {
+    socket.join(newRoom);
+    socket.leave(perviousRoom);
+    let roomMessages = await getLastMessagesFromRoom(newRoom);
     roomMessages = sortRoomMessagesByDate(roomMessages);
     socket.emit("room-messages", roomMessages);
   });
@@ -73,6 +74,23 @@ io.on("connection", (socket) => {
     io.to(room).emit("room-messages", roomMessages);
 
     socket.broadcast.emit("notification", room);
+  });
+
+  // for logout
+  app.delete("/logout", async (req, res) => {
+    try {
+      const { _id, newMessages } = req.body;
+      const user = await User.findById(_id);
+      user.status = "offline";
+      user.newMessages = newMessages;
+      await user.save();
+      const members = await User.find();
+      socket.broadcast.emit("new-user", members);
+      res.status(200).send();
+    } catch (e) {
+      console.log(e);
+      res.status(400).send();
+    }
   });
 });
 

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { AppContext } from "../context/appContext";
 
@@ -6,6 +6,7 @@ const MessageForm = () => {
   const [message, setMessage] = useState("");
   const { socket, currentRoom, setMessages, messages, privateMemberMsg } =
     useContext(AppContext);
+  const messageEndRef = useRef(null);
 
   const getFormattedDate = () => {
     const date = new Date();
@@ -21,7 +22,7 @@ const MessageForm = () => {
   const todayDate = getFormattedDate();
 
   socket.off("room-messages").on("room-messages", (roomMessages) => {
-    console.log("Room messages", roomMessages);
+    // console.log("Room messages", roomMessages);
     setMessages(roomMessages);
   });
 
@@ -31,13 +32,21 @@ const MessageForm = () => {
     const today = new Date();
     const minutes =
       today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes();
-    const time = today.getHours + ":" + minutes;
+    const time = today.getHours() + ":" + minutes;
     const roomId = currentRoom;
     socket.emit("message-room", roomId, message, user, time, todayDate);
     setMessage("");
   };
 
+  const scrollToBottom = () => {
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   const user = useSelector((state) => state.user);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   return (
     <>
@@ -49,7 +58,57 @@ const MessageForm = () => {
           className="h-full flex flex-col justify-evenly items-center gap-3"
         >
           <div className="w-auto border-2 border-slate-700 p-96 rounded-xl">
+            {user && !privateMemberMsg?._id && (
+              <div className="rounded-sm bg-red-400 ">
+                You are in the {currentRoom} room
+              </div>
+            )}
+            {user && privateMemberMsg?._id && (
+              <div className="rounded-sm bg-orange-400">
+                Your conversation with {privateMemberMsg.name}{" "}
+                <img
+                  src={privateMemberMsg.picture}
+                  className="rounded-full border-2 border-slate-500"
+                />
+              </div>
+            )}
             {!user && <div className="text-red-400">Please Login</div>}
+            {user &&
+              messages.map(({ _id: date, messagesByDate }, idx) => (
+                <div key={idx}>
+                  <p>{date}</p>
+                  {messagesByDate?.map(
+                    ({ content, time, from: sender }, msgidx) => (
+                      <div
+                        key={msgidx}
+                        className={
+                          sender?.username == user?.username
+                            ? "message"
+                            : "incoming-message"
+                        }
+                      >
+                        <div>
+                          <div>
+                            <img
+                              src={sender.picture}
+                              className="w-10 h-10 bg-cover rounded-full mr-10"
+                              alt=""
+                            />
+                            <p>
+                              {sender._id == user?._id
+                                ? "(You)"
+                                : "(" + sender.username + ")"}
+                            </p>
+                          </div>
+                          <p>{content}</p>
+                          <p>{time}</p>
+                        </div>
+                      </div>
+                    )
+                  )}
+                </div>
+              ))}
+            <div ref={messageEndRef} />
           </div>
           <div className="flex">
             <input
