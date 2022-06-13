@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import {
   AiFillEye,
@@ -6,7 +6,8 @@ import {
   AiFillPlusCircle,
 } from "react-icons/ai";
 import botImg from "../assets/img/bot.jpeg";
-import { useSignupUserMutation } from "../Api/appApi";
+import { AppContext } from "../context/appContext";
+import { useLoginUserMutation, useSignupUserMutation } from "../Api/appApi";
 
 const signUpState = {
   username: "",
@@ -32,7 +33,10 @@ const Auth = () => {
   const [uploadingImg, setUploadingImg] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
 
+  const [loginUser, { loading, err }] = useLoginUserMutation();
   const [signUpUser, { isLoading, error }] = useSignupUserMutation();
+
+  const { socket } = useContext(AppContext);
 
   const navigate = useNavigate();
   let location = useLocation();
@@ -81,8 +85,15 @@ const Auth = () => {
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    console.log(signInValues);
-    navigate("/chat");
+    // console.log(signInValues);
+    loginUser({ ...signInValues }).then(({ data }) => {
+      if (data) {
+        // socket work
+        socket.emit("new-user");
+        // navigate to the chat
+        navigate("/chat");
+      }
+    });
   };
 
   function validateImg(e) {

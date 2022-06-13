@@ -1,8 +1,15 @@
 import { useSelector } from "react-redux";
+import { useContext } from "react";
+import { AppContext } from "../context/appContext";
 
 const Sidebar = () => {
   const rooms = ["first room", "second room", "third room", "fourth room"];
   const user = useSelector((state) => state.user);
+  const { socket } = useContext(AppContext);
+
+  socket.off("new-user").on("new-user", (payload) => {
+    console.log("The payload is here:", payload);
+  });
 
   if (!user) return <></>;
   return (
