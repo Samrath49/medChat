@@ -13,7 +13,7 @@ const Sidebar = () => {
     setRooms,
     privateMemberMsg,
     rooms,
-    setPrivateMemverMsg,
+    setPrivateMemberMsg,
     currentRoom,
   } = useContext(AppContext);
 
