@@ -136,6 +136,7 @@ const Auth = () => {
               onSubmit={isSignup ? handleSignUpForm : handleSignIn}
               className="h-full flex flex-col justify-evenly items-center gap-3"
             >
+              {error && <p className="text-rose-500">{error.data}</p>}
               {isSignup && (
                 <div className="relative mb-3">
                   <img
